@@ -1,0 +1,27 @@
+# ignore ALL .log files
+*.log
+*.o
+*.mod
+*.inc
+tools/*
+phys/*o
+phys/*mod
+phys/*f90
+phys/*swp
+phys/*bak
+run/namelist*
+run/input*
+run/slurm*
+share/*f90
+test/em_seabreeze2d_x/*exe
+chem/*f90
+dyn_em/*f90
+frame/*f90
+test/em_seabreeze2d_x/*
+external/fftpack/fftpack5/*a
+external/io_grib1/*a
+external/io_grib_share/
+main/*a
+main/*exe
+main/*f90
+run/*exe
