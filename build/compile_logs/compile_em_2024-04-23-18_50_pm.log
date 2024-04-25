@@ -1,0 +1,388 @@
+
+Currently Loaded Modules:
+  1) craype-x86-milan                        7) cpu/1.0                       13) craype/2.7.20                 (c)
+  2) libfabric/1.15.2.0                      8) cray-dsmml/0.2.2              14) cray-hdf5/1.12.2.3            (io)
+  3) craype-network-ofi                      9) cray-libsci/23.02.1.1 (math)  15) cray-netcdf/4.9.0.3           (io)
+  4) xpmem/2.6.2-2.5_2.38__gd067c3f.shasta  10) PrgEnv-gnu/8.3.3      (cpe)   16) cray-parallel-netcdf/1.12.3.3 (io)
+  5) perftools-base/23.12.0                 11) gcc/11.2.0            (c)
+  6) cpe/23.12                              12) cray-mpich/8.1.25     (mpi)
+
+  Where:
+   c:     Compiler
+   cpe:   Cray Programming Environment Modules
+   io:    Input/output software
+   math:  Mathematical libraries
+   mpi:   MPI Providers
+
+ 
+
+Neither WRF_EM_CORE nor WRF_PLUS_CORE
+        are explicitly specified in shell environment.... 
+ 
+============================================================================================== 
+ 
+V4.5.2
+git commit 6dba6381e7b690fd109551de406bdfb502c9ac76 2 files changed, 119 insertions(+), 730 deletions(-)
+ 
+Compiling: WRF_EM_CORE  
+WRFIO_NCD_LARGE_FILE_SUPPORT=1
+ 
+Linux login13 5.14.21-150400.24.81_12.0.87-cray_shasta_c #1 SMP Thu Jan 11 20:03:21 UTC 2024 (e30c7c1) x86_64 x86_64 x86_64 GNU/Linux
+ 
+Not sure how to figure out the version of this compiler: ftn
+ 
+============================================================================================== 
+ 
+setting parallel make -j 4
+ 
+============================================================================================== 
+ 
+The following indicate the compilers selected to build the WRF system
+ 
+Serial Fortran compiler (mostly for tool generation):
+which SFC
+/opt/cray/pe/craype/2.7.20/bin/ftn
+ 
+Serial C compiler (mostly for tool generation):
+which SCC
+/opt/cray/pe/craype/2.7.20/bin/cc
+ 
+Fortran compiler for the model source code:
+which FC
+/opt/cray/pe/craype/2.7.20/bin/ftn
+Will use 'time' to report timing information
+ 
+C compiler for the model source code:
+which CC
+/opt/cray/pe/craype/2.7.20/bin/cc
+ 
+============================================================================================== 
+ 
+make -i -r MODULE_DIRS="-I../dyn_em  -I/global/u1/h/hross/codes/WRF1996/external/esmf_time_f90  -I/global/u1/h/hross/codes/WRF1996/main -I/global/u1/h/hross/codes/WRF1996/external/io_netcdf -I/global/u1/h/hross/codes/WRF1996/external/io_int -I/global/u1/h/hross/codes/WRF1996/frame -I/global/u1/h/hross/codes/WRF1996/share -I/global/u1/h/hross/codes/WRF1996/phys -I/global/u1/h/hross/codes/WRF1996/wrftladj -I/global/u1/h/hross/codes/WRF1996/chem -I/global/u1/h/hross/codes/WRF1996/inc -I/opt/cray/pe/netcdf/4.9.0.3/gnu/9.1/include " ext
+make[1]: Entering directory '/global/u1/h/hross/codes/WRF1996'
+--------------------------------------
+if [ 0 -eq 0 ] ; then \
+  ( cd frame ; make -i -r externals ) ; \
+else \
+  ( cd frame ; make -i -r PLUSFLAG="-DWRFPLUS=1" externals ) ; \
+fi
+make[2]: Entering directory '/global/u1/h/hross/codes/WRF1996/frame'
+( cd /global/u1/h/hross/codes/WRF1996/external/esmf_time_f90 ; \
+          make -j 4 FC="ftn  -g -O0  -w -ffree-form -ffree-line-length-none -fconvert=big-endian -frecord-marker=4 -fallow-argument-mismatch -fallow-invalid-boz -g -O0 " RANLIB="ranlib" \
+          CPP="/lib/cpp -P -nostdinc -I/global/u1/h/hross/codes/WRF1996/inc -I. -DEM_CORE=1 -DNMM_CORE=0 -DNMM_MAX_DIM=2600 -DDA_CORE=0 -DWRFPLUS=0 -DIWORDSIZE=4 -DDWORDSIZE=8 -DRWORDSIZE=4 -DLWORDSIZE=4 -DNONSTANDARD_SYSTEM_SUBR  -DWRF_USE_CLM  -DNETCDF -DHDF5 -DLANDREAD_STUB=1 -DUSE_ALLOCATABLES -Dwrfmodel -DGRIB1 -DINTIO -DKEEP_INT_AROUND -DLIMIT_ARGS -DBUILD_RRTMG_FAST=0 -DBUILD_RRTMK=0 -DBUILD_SBM_FAST=1 -DSHOW_ALL_VARS_USED=0 -DCONFIG_BUF_LEN=65536 -DMAX_DOMAINS_F=21 -DMAX_HISTORY=25 -DNMM_NEST=0 -traditional-cpp" AR="ar" ARFLAGS="ru" )
+make[3]: Entering directory '/global/u1/h/hross/codes/WRF1996/external/esmf_time_f90'
+make[3]: Nothing to be done for 'default'.
+make[3]: Leaving directory '/global/u1/h/hross/codes/WRF1996/external/esmf_time_f90'
+( cd /global/u1/h/hross/codes/WRF1996/external/io_netcdf ; \
+          make -j 4 NETCDFPATH="/opt/cray/pe/netcdf/4.9.0.3/gnu/9.1" RANLIB="ranlib" CPP="/lib/cpp -P -nostdinc" \
+          CC="cc" CFLAGS="-w -O3 -c  -DRPC_TYPES=2 -DRSL0_ONLY -DLANDREAD_STUB=1 -DMAX_HISTORY=25 -DNMM_CORE=0" NETCDF4_DEP_LIB="" \
+          FC="ftn    -w -ffree-form -ffree-line-length-none -fconvert=big-endian -frecord-marker=4 -fallow-argument-mismatch -fallow-invalid-boz -g -O0 " TRADFLAG="-traditional-cpp" AR="ar" ARFLAGS="ru" )
+make[3]: Entering directory '/global/u1/h/hross/codes/WRF1996/external/io_netcdf'
+make[3]: Nothing to be done for 'all'.
+make[3]: Leaving directory '/global/u1/h/hross/codes/WRF1996/external/io_netcdf'
+( cd /global/u1/h/hross/codes/WRF1996/external/ioapi_share ; \
+          make -i -r NATIVE_RWORDSIZE="4" RWORDSIZE="4" AR="ar" ARFLAGS="ru" )
+make[3]: Entering directory '/global/u1/h/hross/codes/WRF1996/external/ioapi_share'
+make[3]: Nothing to be done for 'all'.
+make[3]: Leaving directory '/global/u1/h/hross/codes/WRF1996/external/ioapi_share'
+( cd /global/u1/h/hross/codes/WRF1996/external/io_grib_share ; \
+          make -j 4 CC="cc" CFLAGS="-w -O3 -c  -DRPC_TYPES=2 -DRSL0_ONLY -DLANDREAD_STUB=1 -DMAX_HISTORY=25 -DNMM_CORE=0" RM="rm -f" RANLIB="ranlib" CPP="/lib/cpp -P -nostdinc" \
+          FC="ftn  -I. -g -O0  -w -ffree-form -ffree-line-length-none -fconvert=big-endian -frecord-marker=4 -fallow-argument-mismatch -fallow-invalid-boz -g -O0  " TRADFLAG="-traditional-cpp" AR="ar" ARFLAGS="ru" archive)
+make[3]: Entering directory '/global/u1/h/hross/codes/WRF1996/external/io_grib_share'
+make[4]: Entering directory '/global/u1/h/hross/codes/WRF1996/external/io_grib_share'
+ar ru ./libio_grib_share.a io_grib_share.o get_region_center.o gridnav.o open_file.o
+ranlib ./libio_grib_share.a
+make[4]: Leaving directory '/global/u1/h/hross/codes/WRF1996/external/io_grib_share'
+make[3]: Leaving directory '/global/u1/h/hross/codes/WRF1996/external/io_grib_share'
+( cd /global/u1/h/hross/codes/WRF1996/external/io_grib1 ; \
+          make -j 4 CC="cc" CFLAGS="-w -O3 -c  -DRPC_TYPES=2 -DRSL0_ONLY -DLANDREAD_STUB=1 -DMAX_HISTORY=25 -DNMM_CORE=0" RM="rm -f" RANLIB="ranlib" CPP="/lib/cpp -P -nostdinc" \
+          FC="ftn  -I. -g -O0  -w -ffree-form -ffree-line-length-none -fconvert=big-endian -frecord-marker=4 -fallow-argument-mismatch -fallow-invalid-boz -g -O0  " TRADFLAG="-traditional-cpp" AR="ar" ARFLAGS="ru" archive)
+make[3]: Entering directory '/global/u1/h/hross/codes/WRF1996/external/io_grib1'
+        Doing make archive on library subdirectory MEL_grib1
+make[4]: Entering directory '/global/u1/h/hross/codes/WRF1996/external/io_grib1/MEL_grib1'
+make[5]: Entering directory '/global/u1/h/hross/codes/WRF1996/external/io_grib1/MEL_grib1'
+ar ru ../libio_grib1.a FTP_getfile.o apply_bitmap.o display_gribhdr.o gbyte.o grib_dec.o grib_enc.o grib_seek.o gribgetbds.o gribgetbms.o gribgetgds.o gribgetpds.o gribhdr2file.o gribputbds.o gribputgds.o gribputpds.o hdr_print.o init_dec_struct.o init_enc_struct.o init_gribhdr.o init_struct.o ld_dec_lookup.o ld_enc_input.o ld_enc_lookup.o ld_grib_origctrs.o make_default_grbfn.o make_grib_log.o map_lvl.o map_parm.o pack_spatial.o prt_inp_struct.o upd_child_errmsg.o prt_badmsg.o swap.o grib_uthin.o set_bytes.o
+ranlib ../libio_grib1.a
+make[5]: Leaving directory '/global/u1/h/hross/codes/WRF1996/external/io_grib1/MEL_grib1'
+make[4]: Leaving directory '/global/u1/h/hross/codes/WRF1996/external/io_grib1/MEL_grib1'
+        Doing make archive on library subdirectory grib1_util
+make[4]: Entering directory '/global/u1/h/hross/codes/WRF1996/external/io_grib1/grib1_util'
+make[5]: Entering directory '/global/u1/h/hross/codes/WRF1996/external/io_grib1/grib1_util'
+ar ru ../libio_grib1.a alloc_2d.o read_grib.o write_grib.o
+ranlib ../libio_grib1.a
+make[5]: Leaving directory '/global/u1/h/hross/codes/WRF1996/external/io_grib1/grib1_util'
+make[4]: Leaving directory '/global/u1/h/hross/codes/WRF1996/external/io_grib1/grib1_util'
+        Doing make archive on library subdirectory WGRIB
+make[4]: Entering directory '/global/u1/h/hross/codes/WRF1996/external/io_grib1/WGRIB'
+make[4]: Nothing to be done for 'archive'.
+make[4]: Leaving directory '/global/u1/h/hross/codes/WRF1996/external/io_grib1/WGRIB'
+make[4]: Entering directory '/global/u1/h/hross/codes/WRF1996/external/io_grib1'
+ar ru ./libio_grib1.a grib1_routines.o gribmap.o io_grib1.o trim.o
+ranlib ./libio_grib1.a
+make[4]: Leaving directory '/global/u1/h/hross/codes/WRF1996/external/io_grib1'
+make[3]: Leaving directory '/global/u1/h/hross/codes/WRF1996/external/io_grib1'
+( cd /global/u1/h/hross/codes/WRF1996/external/io_int ; \
+          make -j 4 CC="cc -DFSEEKO64_OK " CFLAGS_LOCAL="-w -O3 -c  -DRPC_TYPES=2 -DRSL0_ONLY" RM="rm -f" RANLIB="ranlib" CPP="/lib/cpp -P -nostdinc" \
+          FC="time ftn  -g -O0  -w -ffree-form -ffree-line-length-none -fconvert=big-endian -frecord-marker=4 -fallow-argument-mismatch -fallow-invalid-boz -g -O0  " FGREP="fgrep -iq" \
+          TRADFLAG="-traditional-cpp" AR="ar" ARFLAGS="ru" ARCHFLAGS="-DEM_CORE=1 -DNMM_CORE=0 -DNMM_MAX_DIM=2600 -DDA_CORE=0 -DWRFPLUS=0 -DIWORDSIZE=4 -DDWORDSIZE=8 -DRWORDSIZE=4 -DLWORDSIZE=4 -DNONSTANDARD_SYSTEM_SUBR  -DWRF_USE_CLM  -DNETCDF -DHDF5 -DLANDREAD_STUB=1 -DUSE_ALLOCATABLES -Dwrfmodel -DGRIB1 -DINTIO -DKEEP_INT_AROUND -DLIMIT_ARGS -DBUILD_RRTMG_FAST=0 -DBUILD_RRTMK=0 -DBUILD_SBM_FAST=1 -DSHOW_ALL_VARS_USED=0 -DCONFIG_BUF_LEN=65536 -DMAX_DOMAINS_F=21 -DMAX_HISTORY=25 -DNMM_NEST=0" all )
+make[3]: Entering directory '/global/u1/h/hross/codes/WRF1996/external/io_int'
+make[3]: Nothing to be done for 'all'.
+make[3]: Leaving directory '/global/u1/h/hross/codes/WRF1996/external/io_int'
+( cd /global/u1/h/hross/codes/WRF1996/external/fftpack/fftpack5 ; \
+          make -j 4 FC="ftn" FFLAGS=" -g -O0  -w -ffree-form -ffree-line-length-none -fconvert=big-endian -frecord-marker=4 -fallow-argument-mismatch -fallow-invalid-boz -g -O0 " RANLIB="ranlib" AR="ar" \
+          ARFLAGS="ru" CPP="/lib/cpp -P -nostdinc" CPPFLAGS="-DEM_CORE=1 -DNMM_CORE=0 -DNMM_MAX_DIM=2600 -DDA_CORE=0 -DWRFPLUS=0 -DIWORDSIZE=4 -DDWORDSIZE=8 -DRWORDSIZE=4 -DLWORDSIZE=4 -DNONSTANDARD_SYSTEM_SUBR  -DWRF_USE_CLM  -DNETCDF -DHDF5 -DLANDREAD_STUB=1 -DUSE_ALLOCATABLES -Dwrfmodel -DGRIB1 -DINTIO -DKEEP_INT_AROUND -DLIMIT_ARGS -DBUILD_RRTMG_FAST=0 -DBUILD_RRTMK=0 -DBUILD_SBM_FAST=1 -DSHOW_ALL_VARS_USED=0 -DCONFIG_BUF_LEN=65536 -DMAX_DOMAINS_F=21 -DMAX_HISTORY=25 -DNMM_NEST=0 -DPNETCDF_QUILT=1 -I. -traditional-cpp " RM="rm -f" )
+make[3]: Entering directory '/global/u1/h/hross/codes/WRF1996/external/fftpack/fftpack5'
+ar ru libfftpack.a c1f2kb.o  cfft1b.o  cmf3kf.o  cosqb1.o  costmi.o   dcosq1f.o  dfftb1.o   mradb2.o  mrfti1.o  r1fgkf.o     rfft2i.o  sinqmi.o  z1f2kf.o  zfft1f.o  zmf4kb.o c1f2kf.o  cfft1f.o  cmf4kb.o  cosqf1.o  d1f2kb.o   dcosq1i.o  dfftf1.o   mradb3.o  msntb1.o  r4_factor.o  rfftb1.o  sint1b.o  z1f3kb.o  zfft1i.o  zmf4kf.o c1f3kb.o  cfft1i.o  cmf4kf.o  cosqmb.o  d1f2kf.o   dcosqb1.o  dffti1.o   mradb4.o  msntf1.o  r4_mcfti1.o  rfftf1.o  sint1f.o  z1f3kf.o  zfft2b.o  zmf5kb.o c1f3kf.o  cfft2b.o  cmf5kb.o  cosqmf.o  d1f3kb.o   dcosqf1.o  dsint1b.o  mradb5.o  r1f2kb.o  r4_tables.o  rffti1.o  sint1i.o  z1f4kb.o  zfft2f.o  zmf5kf.o c1f4kb.o  cfft2f.o  cmf5kf.o  cosqmi.o  d1f3kf.o   dcost1b.o  dsint1f.o  mradbg.o  r1f2kf.o  r8_factor.o  rfftmb.o  sintb1.o  z1f4kf.o  zfft2i.o  zmfgkb.o c1f4kf.o  cfft2i.o  cmfgkb.o  cost1b.o  d1f4kb.o   dcost1f.o  dsint1i.o  mradf2.o  r1f3kb.o  r8_mcfti1.o  rfftmf.o  sintf1.o  z1f5kb.o  zfftmb.o  zmfgkf.o c1f5kb.o  cfftmb.o  cmfgkf.o  cost1f.o  d1f4kf.o   dcost1i.o  dsintb1.o  mradf3.o  r1f3kf.o  r8_tables.o  rfftmi.o  sintmb.o  z1f5kf.o  zfftmf.o  zmfm1b.o c1f5kf.o  cfftmf.o  cmfm1b.o  cost1i.o  d1f5kb.o   dcostb1.o  dsintf1.o  mradf4.o  r1f4kb.o  rfft1b.o     sinq1b.o  sintmf.o  z1fgkb.o  zfftmi.o  zmfm1f.o c1fgkb.o  cfftmi.o  cmfm1f.o  costb1.o  d1f5kf.o   dcostf1.o  mcsqb1.o   mradf5.o  r1f4kf.o  rfft1f.o     sinq1f.o  sintmi.o  z1fgkf.o  zmf2kb.o c1fgkf.o  cmf2kb.o  cosq1b.o  costf1.o  d1fgkb.o   dfft1b.o   mcsqf1.o   mradfg.o  r1f5kb.o  rfft1i.o     sinq1i.o  xercon.o  z1fm1b.o  zmf2kf.o c1fm1b.o  cmf2kf.o  cosq1f.o  costmb.o  d1fgkf.o   dfft1f.o   mcstb1.o   mrftb1.o  r1f5kf.o  rfft2b.o     sinqmb.o  xerfft.o  z1fm1f.o  zmf3kb.o c1fm1f.o  cmf3kb.o  cosq1i.o  costmf.o  dcosq1b.o  dfft1i.o   mcstf1.o   mrftf1.o  r1fgkb.o  rfft2f.o     sinqmf.o  z1f2kb.o  zfft1b.o  zmf3kf.o 
+ranlib libfftpack.a
+make[3]: Leaving directory '/global/u1/h/hross/codes/WRF1996/external/fftpack/fftpack5'
+( /bin/rm -f /global/u1/h/hross/codes/WRF1996/tools/gen_comms.c )
+( if [ ! -e module_dm.F ] ; then /bin/cp module_dm_warning module_dm.F ; cat module_dm_stubs.F >> module_dm.F ; fi )
+make[2]: Leaving directory '/global/u1/h/hross/codes/WRF1996/frame'
+make[1]: Leaving directory '/global/u1/h/hross/codes/WRF1996'
+make -i -r MODULE_DIRS="-I../dyn_em  -I/global/u1/h/hross/codes/WRF1996/external/esmf_time_f90  -I/global/u1/h/hross/codes/WRF1996/main -I/global/u1/h/hross/codes/WRF1996/external/io_netcdf -I/global/u1/h/hross/codes/WRF1996/external/io_int -I/global/u1/h/hross/codes/WRF1996/frame -I/global/u1/h/hross/codes/WRF1996/share -I/global/u1/h/hross/codes/WRF1996/phys -I/global/u1/h/hross/codes/WRF1996/wrftladj -I/global/u1/h/hross/codes/WRF1996/chem -I/global/u1/h/hross/codes/WRF1996/inc -I/opt/cray/pe/netcdf/4.9.0.3/gnu/9.1/include " toolsdir
+make[1]: Entering directory '/global/u1/h/hross/codes/WRF1996'
+--------------------------------------
+if [ 0 -eq 0 ] ; then \
+  ( cd tools ; make -i -r CC_TOOLS_CFLAGS="-DNMM_CORE=0" CC_TOOLS="cc  -DIWORDSIZE=4 -DMAX_HISTORY=25" ) ; \
+else \
+  ( cd tools ; make -i -r CC_TOOLS_CFLAGS="-DNMM_CORE=0" CC_TOOLS="cc  -DIWORDSIZE=4 -DMAX_HISTORY=25 -DWRFPLUS=1" ) ; \
+fi
+make[2]: Entering directory '/global/u1/h/hross/codes/WRF1996/tools'
+/bin/cp gen_comms.stub gen_comms.c
+cc  -DIWORDSIZE=4 -DMAX_HISTORY=25 -DNMM_CORE=0  -c -g  gen_comms.c
+cc  -DIWORDSIZE=4 -DMAX_HISTORY=25 -o registry -g   registry.o my_strtok.o reg_parse.o data.o type.o misc.o gen_defs.o gen_allocs.o gen_mod_state_descr.o gen_scalar_indices.o gen_args.o gen_config.o sym.o symtab_gen.o gen_irr_diag.o gen_model_data_ord.o gen_interp.o gen_comms.o gen_scalar_derefs.o set_dim_strs.o gen_wrf_io.o gen_streams.o
+if [ -x /usr/bin/peflags.exe ] ; then /usr/bin/peflags.exe --stack-reserve=33554432 registry; fi
+make[2]: Leaving directory '/global/u1/h/hross/codes/WRF1996/tools'
+make[1]: Leaving directory '/global/u1/h/hross/codes/WRF1996'
+/bin/rm -f main/libwrflib.a main/libwrflib.lib
+make -i -r MODULE_DIRS="-I../dyn_em  -I/global/u1/h/hross/codes/WRF1996/external/esmf_time_f90  -I/global/u1/h/hross/codes/WRF1996/main -I/global/u1/h/hross/codes/WRF1996/external/io_netcdf -I/global/u1/h/hross/codes/WRF1996/external/io_int -I/global/u1/h/hross/codes/WRF1996/frame -I/global/u1/h/hross/codes/WRF1996/share -I/global/u1/h/hross/codes/WRF1996/phys -I/global/u1/h/hross/codes/WRF1996/wrftladj -I/global/u1/h/hross/codes/WRF1996/chem -I/global/u1/h/hross/codes/WRF1996/inc -I/opt/cray/pe/netcdf/4.9.0.3/gnu/9.1/include " framework
+make[1]: Entering directory '/global/u1/h/hross/codes/WRF1996'
+--------------------------------------
+( cd frame ; make -i -r -j 4 LLIST="" framework ; \
+          cd ../external/io_netcdf ; \
+          make -i -r NETCDFPATH="/opt/cray/pe/netcdf/4.9.0.3/gnu/9.1"  NETCDF4_DEP_LIB="" \
+               FC="time ftn -w -ffree-form -ffree-line-length-none -fconvert=big-endian -frecord-marker=4 -fallow-argument-mismatch -fallow-invalid-boz -g -O0   -g -O0  " RANLIB="ranlib" \
+               CPP="/lib/cpp -P -nostdinc" LDFLAGS="  -w -ffree-form -ffree-line-length-none -fconvert=big-endian -frecord-marker=4 -fallow-argument-mismatch -fallow-invalid-boz -g -O0   " TRADFLAG="-traditional-cpp" ESMF_IO_LIB_EXT="-L/global/u1/h/hross/codes/WRF1996/external/esmf_time_f90 -lesmf_time" \
+               LIB_LOCAL="" \
+               ESMF_MOD_DEPENDENCE="/global/u1/h/hross/codes/WRF1996/external/esmf_time_f90/module_utility.o" AR="INTERNAL_BUILD_ERROR_SHOULD_NOT_NEED_AR" diffwrf; \
+          cd ../io_netcdf ; \
+          make -i -r NETCDFPATH="/opt/cray/pe/netcdf/4.9.0.3/gnu/9.1" NETCDF4_DEP_LIB="" \
+               FC="ftn -w -ffree-form -ffree-line-length-none -fconvert=big-endian -frecord-marker=4 -fallow-argument-mismatch -fallow-invalid-boz -g -O0   -g -O0  " RANLIB="ranlib" \
+               CPP="/lib/cpp -P -nostdinc" LDFLAGS="  -w -ffree-form -ffree-line-length-none -fconvert=big-endian -frecord-marker=4 -fallow-argument-mismatch -fallow-invalid-boz -g -O0   " TRADFLAG="-traditional-cpp" ESMF_IO_LIB_EXT="-L/global/u1/h/hross/codes/WRF1996/external/esmf_time_f90 -lesmf_time" \
+       LIB_LOCAL="" \
+               ESMF_MOD_DEPENDENCE="/global/u1/h/hross/codes/WRF1996/external/esmf_time_f90/module_utility.o" AR="INTERNAL_BUILD_ERROR_SHOULD_NOT_NEED_AR"; \
+          cd ../io_netcdfpar ; \
+          echo SKIPPING make -i -r NETCDFPARPATH="/opt/cray/pe/netcdf/4.9.0.3/gnu/9.1" NETCDF4_DEP_LIB="" \
+               FC="time ftn -w -ffree-form -ffree-line-length-none -fconvert=big-endian -frecord-marker=4 -fallow-argument-mismatch -fallow-invalid-boz -g -O0   -g -O0  " RANLIB="ranlib" \
+               CPP="/lib/cpp -P -nostdinc" LDFLAGS="  -w -ffree-form -ffree-line-length-none -fconvert=big-endian -frecord-marker=4 -fallow-argument-mismatch -fallow-invalid-boz -g -O0   " TRADFLAG="-traditional-cpp" ESMF_IO_LIB_EXT="-L/global/u1/h/hross/codes/WRF1996/external/esmf_time_f90 -lesmf_time" \
+               LIB_LOCAL="" \
+               ESMF_MOD_DEPENDENCE="/global/u1/h/hross/codes/WRF1996/external/esmf_time_f90/module_utility.o" AR="INTERNAL_BUILD_ERROR_SHOULD_NOT_NEED_AR" diffwrf; \
+          cd ../io_netcdfpar ; \
+          echo SKIPPING make -i -r NETCDFPARPATH="/opt/cray/pe/netcdf/4.9.0.3/gnu/9.1" NETCDF4_DEP_LIB="" \
+               FC="ftn -w -ffree-form -ffree-line-length-none -fconvert=big-endian -frecord-marker=4 -fallow-argument-mismatch -fallow-invalid-boz -g -O0   -g -O0  " RANLIB="ranlib" \
+               CPP="/lib/cpp -P -nostdinc" LDFLAGS="  -w -ffree-form -ffree-line-length-none -fconvert=big-endian -frecord-marker=4 -fallow-argument-mismatch -fallow-invalid-boz -g -O0   " TRADFLAG="-traditional-cpp" ESMF_IO_LIB_EXT="-L/global/u1/h/hross/codes/WRF1996/external/esmf_time_f90 -lesmf_time" \
+       LIB_LOCAL="" \
+               ESMF_MOD_DEPENDENCE="/global/u1/h/hross/codes/WRF1996/external/esmf_time_f90/module_utility.o" AR="INTERNAL_BUILD_ERROR_SHOULD_NOT_NEED_AR"; \
+          cd ../io_pio ; \
+          echo SKIPPING PIO BUILD make -i -r NETCDFPATH="" NETCDF4_DEP_LIB="" \
+               FC="ftn -w -ffree-form -ffree-line-length-none -fconvert=big-endian -frecord-marker=4 -fallow-argument-mismatch -fallow-invalid-boz -g -O0   -g -O0  " RANLIB="ranlib" \
+               CPP="/lib/cpp -P -nostdinc" LDFLAGS="  -w -ffree-form -ffree-line-length-none -fconvert=big-endian -frecord-marker=4 -fallow-argument-mismatch -fallow-invalid-boz -g -O0   " TRADFLAG="-traditional-cpp" ESMF_IO_LIB_EXT="-L/global/u1/h/hross/codes/WRF1996/external/esmf_time_f90 -lesmf_time" \
+       LIB_LOCAL="" \
+               ESMF_MOD_DEPENDENCE="/global/u1/h/hross/codes/WRF1996/external/esmf_time_f90/module_utility.o" AR="INTERNAL_BUILD_ERROR_SHOULD_NOT_NEED_AR"; \
+          cd ../io_int ; \
+          make -i -r SFC="ftn -w -ffree-form -ffree-line-length-none -fconvert=big-endian -frecord-marker=4 -fallow-argument-mismatch -fallow-invalid-boz -g -O0 " \
+               FC="ftn -w -ffree-form -ffree-line-length-none -fconvert=big-endian -frecord-marker=4 -fallow-argument-mismatch -fallow-invalid-boz -g -O0   -g -O0  " \
+               RANLIB="ranlib" CPP="/lib/cpp -P -nostdinc -DNONSTANDARD_SYSTEM_SUBR  -DWRF_USE_CLM" DM_FC="mpif90 -f90=ftn -w -ffree-form -ffree-line-length-none -fconvert=big-endian -frecord-marker=4 -fallow-argument-mismatch -fallow-invalid-boz -g -O0 "\
+               TRADFLAG="-traditional-cpp" ESMF_IO_LIB_EXT="-L/global/u1/h/hross/codes/WRF1996/external/esmf_time_f90 -lesmf_time" \
+               ESMF_MOD_DEPENDENCE="/global/u1/h/hross/codes/WRF1996/external/esmf_time_f90/module_utility.o" AR="INTERNAL_BUILD_ERROR_SHOULD_NOT_NEED_AR" diffwrf ; \
+          cd ../../frame )
+make[2]: Entering directory '/global/u1/h/hross/codes/WRF1996/frame'
+ar ru ../main/libwrflib.a module_driver_constants.o module_domain_type.o module_streams.o module_domain.o  module_integrate.o module_timing.o module_configure.o module_tiles.o module_machine.o module_nesting.o module_wrf_error.o module_state_description.o module_sm.o module_io.o module_comm_dm.o module_comm_dm_0.o module_comm_dm_1.o module_comm_dm_2.o module_comm_dm_3.o module_comm_dm_4.o module_comm_nesting_dm.o module_dm.o module_quilt_outbuf_ops.o module_io_quilt.o module_cpl.o module_cpl_oasis3.o module_clear_halos.o wrf_num_bytes_between.o wrf_shutdown.o wrf_debug.o libmassv.o collect_on_comm.o hires_timer.o clog.o nl_get_0_routines.o nl_get_1_routines.o nl_get_2_routines.o nl_get_3_routines.o nl_get_4_routines.o nl_get_5_routines.o nl_get_6_routines.o nl_get_7_routines.o nl_set_0_routines.o nl_set_1_routines.o nl_set_2_routines.o nl_set_3_routines.o nl_set_4_routines.o nl_set_5_routines.o nl_set_6_routines.o nl_set_7_routines.o  module_alloc_space_0.o module_alloc_space_1.o module_alloc_space_2.o module_alloc_space_3.o module_alloc_space_4.o module_alloc_space_5.o module_alloc_space_6.o module_alloc_space_7.o module_alloc_space_8.o module_alloc_space_9.o
+ar: creating ../main/libwrflib.a
+ranlib ../main/libwrflib.a
+make[2]: Leaving directory '/global/u1/h/hross/codes/WRF1996/frame'
+make[2]: Entering directory '/global/u1/h/hross/codes/WRF1996/external/io_netcdf'
+make[2]: 'diffwrf' is up to date.
+make[2]: Leaving directory '/global/u1/h/hross/codes/WRF1996/external/io_netcdf'
+make[2]: Entering directory '/global/u1/h/hross/codes/WRF1996/external/io_netcdf'
+make[2]: Nothing to be done for 'all'.
+make[2]: Leaving directory '/global/u1/h/hross/codes/WRF1996/external/io_netcdf'
+SKIPPING make -i -r NETCDFPARPATH=/opt/cray/pe/netcdf/4.9.0.3/gnu/9.1 NETCDF4_DEP_LIB= FC=time ftn -w -ffree-form -ffree-line-length-none -fconvert=big-endian -frecord-marker=4 -fallow-argument-mismatch -fallow-invalid-boz -g -O0   -g -O0   RANLIB=ranlib CPP=/lib/cpp -P -nostdinc LDFLAGS=  -w -ffree-form -ffree-line-length-none -fconvert=big-endian -frecord-marker=4 -fallow-argument-mismatch -fallow-invalid-boz -g -O0    TRADFLAG=-traditional-cpp ESMF_IO_LIB_EXT=-L/global/u1/h/hross/codes/WRF1996/external/esmf_time_f90 -lesmf_time LIB_LOCAL= ESMF_MOD_DEPENDENCE=/global/u1/h/hross/codes/WRF1996/external/esmf_time_f90/module_utility.o AR=INTERNAL_BUILD_ERROR_SHOULD_NOT_NEED_AR diffwrf
+SKIPPING make -i -r NETCDFPARPATH=/opt/cray/pe/netcdf/4.9.0.3/gnu/9.1 NETCDF4_DEP_LIB= FC=ftn -w -ffree-form -ffree-line-length-none -fconvert=big-endian -frecord-marker=4 -fallow-argument-mismatch -fallow-invalid-boz -g -O0   -g -O0   RANLIB=ranlib CPP=/lib/cpp -P -nostdinc LDFLAGS=  -w -ffree-form -ffree-line-length-none -fconvert=big-endian -frecord-marker=4 -fallow-argument-mismatch -fallow-invalid-boz -g -O0    TRADFLAG=-traditional-cpp ESMF_IO_LIB_EXT=-L/global/u1/h/hross/codes/WRF1996/external/esmf_time_f90 -lesmf_time LIB_LOCAL= ESMF_MOD_DEPENDENCE=/global/u1/h/hross/codes/WRF1996/external/esmf_time_f90/module_utility.o AR=INTERNAL_BUILD_ERROR_SHOULD_NOT_NEED_AR
+SKIPPING PIO BUILD make -i -r NETCDFPATH= NETCDF4_DEP_LIB= FC=ftn -w -ffree-form -ffree-line-length-none -fconvert=big-endian -frecord-marker=4 -fallow-argument-mismatch -fallow-invalid-boz -g -O0   -g -O0   RANLIB=ranlib CPP=/lib/cpp -P -nostdinc LDFLAGS=  -w -ffree-form -ffree-line-length-none -fconvert=big-endian -frecord-marker=4 -fallow-argument-mismatch -fallow-invalid-boz -g -O0    TRADFLAG=-traditional-cpp ESMF_IO_LIB_EXT=-L/global/u1/h/hross/codes/WRF1996/external/esmf_time_f90 -lesmf_time LIB_LOCAL= ESMF_MOD_DEPENDENCE=/global/u1/h/hross/codes/WRF1996/external/esmf_time_f90/module_utility.o AR=INTERNAL_BUILD_ERROR_SHOULD_NOT_NEED_AR
+make[2]: Entering directory '/global/u1/h/hross/codes/WRF1996/external/io_int'
+make[2]: 'diffwrf' is up to date.
+make[2]: Leaving directory '/global/u1/h/hross/codes/WRF1996/external/io_int'
+make[1]: Leaving directory '/global/u1/h/hross/codes/WRF1996'
+make -i -r MODULE_DIRS="-I../dyn_em  -I/global/u1/h/hross/codes/WRF1996/external/esmf_time_f90  -I/global/u1/h/hross/codes/WRF1996/main -I/global/u1/h/hross/codes/WRF1996/external/io_netcdf -I/global/u1/h/hross/codes/WRF1996/external/io_int -I/global/u1/h/hross/codes/WRF1996/frame -I/global/u1/h/hross/codes/WRF1996/share -I/global/u1/h/hross/codes/WRF1996/phys -I/global/u1/h/hross/codes/WRF1996/wrftladj -I/global/u1/h/hross/codes/WRF1996/chem -I/global/u1/h/hross/codes/WRF1996/inc -I/opt/cray/pe/netcdf/4.9.0.3/gnu/9.1/include " shared
+make[1]: Entering directory '/global/u1/h/hross/codes/WRF1996'
+--------------------------------------
+if [ "`echo -j 4 | sed -e 's/-j//g' -e 's/ \+//g'`" -gt "6" ] ; then \
+  if [ 0 -eq 0 ]   ; then \
+   ( cd share ; make -i -r -j 6 PERTMOD=" " ) ;  \
+  else \
+   ( cd share ; make -i -r -j 6 PERTMOD="../dyn_em/module_bc_em.o ../wrftladj/mediation_pertmod_io.o" ) ;  \
+  fi \
+else \
+  if [ 0 -eq 0 ]   ; then \
+   ( cd share ; make -i -r -j 4 PERTMOD=" " ) ;  \
+  else \
+   ( cd share ; make -i -r -j 4 PERTMOD="../dyn_em/module_bc_em.o ../wrftladj/mediation_pertmod_io.o" ) ;  \
+  fi \
+fi
+make[2]: Entering directory '/global/u1/h/hross/codes/WRF1996/share'
+if [ 0 -eq 1 ] ; then \
+                  make -i -r nmm_contrib                                      ; \
+                  ar ru ../main/libwrflib.a module_model_constants.o module_bc_time_utilities.o module_get_file_names.o module_compute_geop.o module_chem_share.o module_check_a_mundo.o module_HLaw.o module_ctrans_aqchem.o module_random.o module_llxy.o module_interp_nmm.o module_interp_store.o module_string_tools.o module_MPP.o  module_date_time.o module_bc.o module_io_wrf.o module_soil_pre.o  module_io_domain.o               module_optional_input.o          solve_interface.o mediation_interp_domain.o mediation_force_domain.o mediation_feedback_domain.o start_domain.o init_modules.o set_timekeeping.o interp_fcn.o sint.o wrf_ext_write_field.o wrf_ext_read_field.o  wrf_tsin.o landread.o track_driver.o track_input.o module_trajectory.o bobrand.o wrf_timeseries.o track_driver.o wrf_fddaobs_in.o mediation_nest_move.o setfeenv.o input_wrf.o output_wrf.o wrf_bdyout.o wrf_bdyin.o dfi.o  mediation_integrate.o mediation_wrfmain.o    ; \
+                  else                                                         \
+                  ar ru ../main/libwrflib.a module_model_constants.o module_bc_time_utilities.o module_get_file_names.o module_compute_geop.o module_chem_share.o module_check_a_mundo.o module_HLaw.o module_ctrans_aqchem.o module_random.o module_llxy.o module_interp_nmm.o module_interp_store.o module_string_tools.o module_MPP.o  module_date_time.o module_bc.o module_io_wrf.o module_soil_pre.o  module_io_domain.o               module_optional_input.o          solve_interface.o mediation_interp_domain.o mediation_force_domain.o mediation_feedback_domain.o start_domain.o init_modules.o set_timekeeping.o interp_fcn.o sint.o wrf_ext_write_field.o wrf_ext_read_field.o  wrf_tsin.o landread.o track_driver.o track_input.o module_trajectory.o bobrand.o wrf_timeseries.o track_driver.o wrf_fddaobs_in.o mediation_nest_move.o setfeenv.o input_wrf.o output_wrf.o wrf_bdyout.o wrf_bdyin.o dfi.o  mediation_integrate.o mediation_wrfmain.o              ; \
+                fi
+make[2]: Leaving directory '/global/u1/h/hross/codes/WRF1996/share'
+make[1]: Leaving directory '/global/u1/h/hross/codes/WRF1996'
+make -i -r MODULE_DIRS="-I../dyn_em  -I/global/u1/h/hross/codes/WRF1996/external/esmf_time_f90  -I/global/u1/h/hross/codes/WRF1996/main -I/global/u1/h/hross/codes/WRF1996/external/io_netcdf -I/global/u1/h/hross/codes/WRF1996/external/io_int -I/global/u1/h/hross/codes/WRF1996/frame -I/global/u1/h/hross/codes/WRF1996/share -I/global/u1/h/hross/codes/WRF1996/phys -I/global/u1/h/hross/codes/WRF1996/wrftladj -I/global/u1/h/hross/codes/WRF1996/chem -I/global/u1/h/hross/codes/WRF1996/inc -I/opt/cray/pe/netcdf/4.9.0.3/gnu/9.1/include " physics
+make[1]: Entering directory '/global/u1/h/hross/codes/WRF1996'
+--------------------------------------
+if [ 0  -eq 0 ] ; then \
+	( cd phys ; make -i -r submodules ; make -i -r CF2=" " ) ; \
+	if [ -n "" ] && [  -eq 1 ] ; then \
+		@ echo '----------- make cmaq ----------------' ; \
+		( rm -f main/libcmaqlib.a; cd cmaq ; make -i -r -f Makefile.twoway ) ; \
+	fi \
+else \
+	( cd phys ; make -i -r submodules ; make -i -r CF2="../chem/module_data_mosaic_asect.o" ) ; \
+fi
+make[2]: Entering directory '/global/u1/h/hross/codes/WRF1996/phys'
+No action required for NoahMP submodule
+make[2]: Leaving directory '/global/u1/h/hross/codes/WRF1996/phys'
+make[2]: Entering directory '/global/u1/h/hross/codes/WRF1996/phys'
+make -i -r -j 4 non_nmm ; \
+ar ru ../main/libwrflib.a ccpp_kind_types.o module_bep_bem_helper.o complex_number_module.o module_cam_shr_kind_mod.o module_cam_support.o module_cam_shr_const_mod.o module_cam_physconst.o module_cam_cldwat.o module_cam_wv_saturation.o module_cam_esinti.o module_cam_gffgch.o module_cam_error_function.o module_cam_constituents.o module_cam_trb_mtn_stress.o module_cam_molec_diff.o module_cam_upper_bc.o module_cam_bl_diffusion_solver.o module_cam_bl_eddy_diff.o module_cam_mp_microp_aero.o module_cam_mp_cldwat2m_micro.o module_cam_mp_ndrop.o module_cam_mp_modal_aero_initialize_data_phys.o module_cam_mp_radconstants.o module_cam_mp_conv_water.o module_cam_mp_qneg3.o module_data_cam_mam_aero.o module_data_cam_mam_asect.o module_cam_infnan.o  module_bl_ysu.o module_bl_shinhong.o module_bl_mrf.o module_bl_gfs.o module_bl_gfsedmf.o module_bl_myjpbl.o module_bl_qnsepbl.o module_bl_acm.o module_bl_mynn_common.o module_bl_mynn.o module_bl_mynn_wrapper.o module_bl_fogdes.o module_bl_gwdo.o module_bl_gwdo_gsl.o module_bl_myjurb.o module_bl_boulac.o module_checkerror.o module_bl_camuwpbl_driver.o module_bl_mfshconvpbl.o module_bl_eepsilon.o module_bl_keps.o module_shcu_camuwshcu_driver.o module_shcu_camuwshcu.o module_shcu_deng.o module_shcu_grims.o module_shcu_nscv.o module_cu_camzm_driver.o module_cu_camzm.o module_bl_temf.o module_bl_gbmpbl.o module_cu_g3.o module_cu_kf.o module_cu_bmj.o module_cu_kfeta.o module_cu_mskf.o module_cu_tiedtke.o module_cu_ntiedtke.o module_cu_gd.o module_cu_gf_ctrans.o module_cu_gf_wrfdrv.o module_cu_gf_deep.o module_cu_gf_sh.o module_cu_ksas.o module_cu_nsas.o module_cu_sas.o module_gocart_coupling.o module_cu_scalesas.o module_cu_osas.o module_cu_kfcup.o module_madwrf.o module_mp_radar.o module_mp_kessler.o module_mp_lin.o module_mp_sbu_ylin.o module_mp_wsm3.o module_mp_wsm5.o module_mp_wsm6.o module_mp_wsm6r.o module_mp_wsm7.o module_mp_etanew.o module_mp_fer_hires.o module_mp_thompson.o module_fire_emis.o module_mp_SBM_polar_radar.o module_mp_full_sbm.o module_mp_fast_sbm.o module_ltng_lpi.o module_mp_gsfcgce.o module_mp_gsfcgce_4ice_nuwrf.o module_mp_morr_two_moment.o module_mp_p3.o module_mp_jensen_ishmael.o module_mp_morr_two_moment_aero.o module_mp_milbrandt2mom.o module_mp_nssl_2mom.o module_mp_wdm5.o module_mp_wdm6.o module_mp_wdm7.o module_mp_ntu.o module_mp_cammgmp_driver.o module_ra_sw.o module_ra_clWRF_support.o module_ra_gsfcsw.o module_ra_goddard.o module_ra_effective_radius.o module_ra_rrtm.o module_ra_rrtmg_lw.o module_ra_rrtmg_sw.o module_ra_rrtmg_aero_optical_util_cmaq.o module_ra_rrtmg_lwf.o module_ra_rrtmg_swf.o module_ra_rrtmg_lwk.o module_ra_rrtmg_swk.o module_ra_cam_support.o module_ra_cam.o module_ra_gfdleta.o module_ra_flg.o module_ra_hs.o module_ra_eclipse.o module_ra_aerosol.o module_ra_farms.o module_sf_sfclay.o module_sf_sfclayrev.o module_sf_gfs.o module_sf_exchcoef.o module_sf_gfdl.o module_sf_slab.o module_sf_noahdrv.o module_sf_noahlsm.o module_sf_clm.o module_sf_ctsm.o module_sf_ssib.o module_sf_noah_seaice.o module_sf_noah_seaice_drv.o module_sf_noahlsm_glacial_only.o module_sf_noahmp_groundwater.o module_sf_gecros.o module_sf_noahmpdrv.o module_sf_noahmplsm.o module_sf_noahmp_glacier.o module_sf_urban.o module_sf_bep.o module_sf_bep_bem.o module_sf_bem.o module_sf_pxlsm.o module_sf_pxlsm_data.o module_sf_ruclsm.o module_sf_sfcdiags.o module_sf_sfcdiags_ruclsm.o module_sf_sstskin.o module_sf_tmnupdate.o module_sf_ocean_driver.o module_sf_oml.o module_sf_3dpwp.o module_sf_myjsfc.o module_sf_qnsesfc.o module_sf_mynn.o module_sf_fogdes.o module_sf_pxsfclay.o module_sf_temfsfclay.o module_sf_idealscmsfclay.o module_sf_scmflux.o module_sf_scmskintemp.o module_physics_addtendc.o module_physics_init.o module_gfs_machine.o module_gfs_funcphys.o module_gfs_physcons.o module_progtm.o module_pbl_driver.o module_data_gocart_dust.o module_dust_emis.o module_cumulus_driver.o module_shallowcu_driver.o module_microphysics_driver.o module_microphysics_zero_out.o module_mixactivate.o module_radiation_driver.o module_surface_driver.o module_lightning_driver.o module_ltng_cpmpr92z.o module_ltng_crmpr92.o module_ltng_iccg.o module_fdda_psufddagd.o module_fdda_spnudging.o module_fddagd_driver.o module_fddaobs_rtfdda.o module_fddaobs_driver.o module_wind_fitch.o module_wind_mav.o module_sf_lake.o module_diagnostics_driver.o module_irrigation.o   \
+	module_fr_fire_driver.o module_fr_fire_driver_wrf.o module_fr_fire_atm.o module_fr_fire_model.o module_fr_fire_core.o module_fr_fire_phys.o module_fr_fire_util.o module_firebrand_spotting_mpi.o module_firebrand_spotting.o module_diag_afwa.o module_diag_cl.o module_diag_functions.o module_diag_hailcast.o module_diag_misc.o module_diag_nwp.o module_diag_rasm.o module_diag_pld.o module_diag_zld.o module_diag_trad_fields.o module_diag_solar.o
+make[3]: Entering directory '/global/u1/h/hross/codes/WRF1996/phys'
+rm -f module_bl_mynn_wrapper.o
+sed -e "s/^\!.*'.*//" -e "s/^ *\!.*'.*//" module_bl_mynn_wrapper.F > module_bl_mynn_wrapper.G
+rm -f module_madwrf.o
+sed -e "s/^\!.*'.*//" -e "s/^ *\!.*'.*//" module_madwrf.F > module_madwrf.G
+/lib/cpp -P -nostdinc -I/global/u1/h/hross/codes/WRF1996/inc -DEM_CORE=1 -DNMM_CORE=0 -DNMM_MAX_DIM=2600 -DDA_CORE=0 -DWRFPLUS=0 -DIWORDSIZE=4 -DDWORDSIZE=8 -DRWORDSIZE=4 -DLWORDSIZE=4 -DNONSTANDARD_SYSTEM_SUBR  -DWRF_USE_CLM  -DNETCDF -DHDF5 -DLANDREAD_STUB=1 -DUSE_ALLOCATABLES -Dwrfmodel -DGRIB1 -DINTIO -DKEEP_INT_AROUND -DLIMIT_ARGS -DBUILD_RRTMG_FAST=0 -DBUILD_RRTMK=0 -DBUILD_SBM_FAST=1 -DSHOW_ALL_VARS_USED=0 -DCONFIG_BUF_LEN=65536 -DMAX_DOMAINS_F=21 -DMAX_HISTORY=25 -DNMM_NEST=0 -DPNETCDF_QUILT=1 -I. -traditional-cpp   module_bl_mynn_wrapper.G  > module_bl_mynn_wrapper.bb
+/lib/cpp -P -nostdinc -I/global/u1/h/hross/codes/WRF1996/inc -DEM_CORE=1 -DNMM_CORE=0 -DNMM_MAX_DIM=2600 -DDA_CORE=0 -DWRFPLUS=0 -DIWORDSIZE=4 -DDWORDSIZE=8 -DRWORDSIZE=4 -DLWORDSIZE=4 -DNONSTANDARD_SYSTEM_SUBR  -DWRF_USE_CLM  -DNETCDF -DHDF5 -DLANDREAD_STUB=1 -DUSE_ALLOCATABLES -Dwrfmodel -DGRIB1 -DINTIO -DKEEP_INT_AROUND -DLIMIT_ARGS -DBUILD_RRTMG_FAST=0 -DBUILD_RRTMK=0 -DBUILD_SBM_FAST=1 -DSHOW_ALL_VARS_USED=0 -DCONFIG_BUF_LEN=65536 -DMAX_DOMAINS_F=21 -DMAX_HISTORY=25 -DNMM_NEST=0 -DPNETCDF_QUILT=1 -I. -traditional-cpp   module_madwrf.G  > module_madwrf.bb
+/global/u1/h/hross/codes/WRF1996/tools/standard.exe module_bl_mynn_wrapper.bb | /lib/cpp -P -nostdinc -traditional-cpp > module_bl_mynn_wrapper.f90
+/global/u1/h/hross/codes/WRF1996/tools/standard.exe module_madwrf.bb | /lib/cpp -P -nostdinc -traditional-cpp > module_madwrf.f90
+rm -f module_bl_mynn_wrapper.G module_bl_mynn_wrapper.bb
+rm -f module_madwrf.G module_madwrf.bb
+time ftn -o module_bl_mynn_wrapper.o -c  -w -ffree-form -ffree-line-length-none -fconvert=big-endian -frecord-marker=4 -fallow-argument-mismatch -fallow-invalid-boz -g -O0   -I../dyn_em  -I/global/u1/h/hross/codes/WRF1996/external/esmf_time_f90  -I/global/u1/h/hross/codes/WRF1996/main -I/global/u1/h/hross/codes/WRF1996/external/io_netcdf -I/global/u1/h/hross/codes/WRF1996/external/io_int -I/global/u1/h/hross/codes/WRF1996/frame -I/global/u1/h/hross/codes/WRF1996/share -I/global/u1/h/hross/codes/WRF1996/phys -I/global/u1/h/hross/codes/WRF1996/wrftladj -I/global/u1/h/hross/codes/WRF1996/chem -I/global/u1/h/hross/codes/WRF1996/inc -I/opt/cray/pe/netcdf/4.9.0.3/gnu/9.1/include    module_bl_mynn_wrapper.f90
+time ftn -o module_madwrf.o -c  -w -ffree-form -ffree-line-length-none -fconvert=big-endian -frecord-marker=4 -fallow-argument-mismatch -fallow-invalid-boz -g -O0   -I../dyn_em  -I/global/u1/h/hross/codes/WRF1996/external/esmf_time_f90  -I/global/u1/h/hross/codes/WRF1996/main -I/global/u1/h/hross/codes/WRF1996/external/io_netcdf -I/global/u1/h/hross/codes/WRF1996/external/io_int -I/global/u1/h/hross/codes/WRF1996/frame -I/global/u1/h/hross/codes/WRF1996/share -I/global/u1/h/hross/codes/WRF1996/phys -I/global/u1/h/hross/codes/WRF1996/wrftladj -I/global/u1/h/hross/codes/WRF1996/chem -I/global/u1/h/hross/codes/WRF1996/inc -I/opt/cray/pe/netcdf/4.9.0.3/gnu/9.1/include    module_madwrf.f90
+0.15user 0.03system 0:00.20elapsed 96%CPU (0avgtext+0avgdata 38904maxresident)k
+0inputs+0outputs (0major+7303minor)pagefaults 0swaps
+0.18user 0.04system 0:00.23elapsed 96%CPU (0avgtext+0avgdata 50384maxresident)k
+0inputs+0outputs (0major+11032minor)pagefaults 0swaps
+rm -f module_physics_init.o
+rm -f module_pbl_driver.o
+/lib/cpp -P -nostdinc -I/global/u1/h/hross/codes/WRF1996/inc -DEM_CORE=1 -DNMM_CORE=0 -DNMM_MAX_DIM=2600 -DDA_CORE=0 -DWRFPLUS=0 -DIWORDSIZE=4 -DDWORDSIZE=8 -DRWORDSIZE=4 -DLWORDSIZE=4 -DNONSTANDARD_SYSTEM_SUBR  -DWRF_USE_CLM  -DNETCDF -DHDF5 -DLANDREAD_STUB=1 -DUSE_ALLOCATABLES -Dwrfmodel -DGRIB1 -DINTIO -DKEEP_INT_AROUND -DLIMIT_ARGS -DBUILD_RRTMG_FAST=0 -DBUILD_RRTMK=0 -DBUILD_SBM_FAST=1 -DSHOW_ALL_VARS_USED=0 -DCONFIG_BUF_LEN=65536 -DMAX_DOMAINS_F=21 -DMAX_HISTORY=25 -DNMM_NEST=0 -DPNETCDF_QUILT=1 -I. -traditional-cpp   module_physics_init.F  > module_physics_init.bb
+sed -e "s/^\!.*'.*//" -e "s/^ *\!.*'.*//" module_pbl_driver.F > module_pbl_driver.G
+/lib/cpp -P -nostdinc -I/global/u1/h/hross/codes/WRF1996/inc -DEM_CORE=1 -DNMM_CORE=0 -DNMM_MAX_DIM=2600 -DDA_CORE=0 -DWRFPLUS=0 -DIWORDSIZE=4 -DDWORDSIZE=8 -DRWORDSIZE=4 -DLWORDSIZE=4 -DNONSTANDARD_SYSTEM_SUBR  -DWRF_USE_CLM  -DNETCDF -DHDF5 -DLANDREAD_STUB=1 -DUSE_ALLOCATABLES -Dwrfmodel -DGRIB1 -DINTIO -DKEEP_INT_AROUND -DLIMIT_ARGS -DBUILD_RRTMG_FAST=0 -DBUILD_RRTMK=0 -DBUILD_SBM_FAST=1 -DSHOW_ALL_VARS_USED=0 -DCONFIG_BUF_LEN=65536 -DMAX_DOMAINS_F=21 -DMAX_HISTORY=25 -DNMM_NEST=0 -DPNETCDF_QUILT=1 -I. -traditional-cpp   module_pbl_driver.G  > module_pbl_driver.bb
+/global/u1/h/hross/codes/WRF1996/tools/standard.exe module_physics_init.bb | /lib/cpp -P -nostdinc -traditional-cpp > module_physics_init.f90
+/global/u1/h/hross/codes/WRF1996/tools/standard.exe module_pbl_driver.bb | /lib/cpp -P -nostdinc -traditional-cpp > module_pbl_driver.f90
+rm -f module_pbl_driver.G module_pbl_driver.bb
+rm -f module_physics_init.b module_physics_init.bb
+time ftn -c   -O0 -w -ffree-form -ffree-line-length-none -fconvert=big-endian -frecord-marker=4 -fallow-argument-mismatch -fallow-invalid-boz -g -O0  -I../dyn_em  -I/global/u1/h/hross/codes/WRF1996/external/esmf_time_f90  -I/global/u1/h/hross/codes/WRF1996/main -I/global/u1/h/hross/codes/WRF1996/external/io_netcdf -I/global/u1/h/hross/codes/WRF1996/external/io_int -I/global/u1/h/hross/codes/WRF1996/frame -I/global/u1/h/hross/codes/WRF1996/share -I/global/u1/h/hross/codes/WRF1996/phys -I/global/u1/h/hross/codes/WRF1996/wrftladj -I/global/u1/h/hross/codes/WRF1996/chem -I/global/u1/h/hross/codes/WRF1996/inc -I/opt/cray/pe/netcdf/4.9.0.3/gnu/9.1/include   module_physics_init.f90
+time ftn -o module_pbl_driver.o -c  -w -ffree-form -ffree-line-length-none -fconvert=big-endian -frecord-marker=4 -fallow-argument-mismatch -fallow-invalid-boz -g -O0   -I../dyn_em  -I/global/u1/h/hross/codes/WRF1996/external/esmf_time_f90  -I/global/u1/h/hross/codes/WRF1996/main -I/global/u1/h/hross/codes/WRF1996/external/io_netcdf -I/global/u1/h/hross/codes/WRF1996/external/io_int -I/global/u1/h/hross/codes/WRF1996/frame -I/global/u1/h/hross/codes/WRF1996/share -I/global/u1/h/hross/codes/WRF1996/phys -I/global/u1/h/hross/codes/WRF1996/wrftladj -I/global/u1/h/hross/codes/WRF1996/chem -I/global/u1/h/hross/codes/WRF1996/inc -I/opt/cray/pe/netcdf/4.9.0.3/gnu/9.1/include    module_pbl_driver.f90
+0.48user 0.08system 0:00.58elapsed 98%CPU (0avgtext+0avgdata 84504maxresident)k
+0inputs+0outputs (0major+20608minor)pagefaults 0swaps
+1.80user 0.08system 0:01.89elapsed 99%CPU (0avgtext+0avgdata 161132maxresident)k
+0inputs+0outputs (0major+41868minor)pagefaults 0swaps
+make[3]: Leaving directory '/global/u1/h/hross/codes/WRF1996/phys'
+make[2]: Leaving directory '/global/u1/h/hross/codes/WRF1996/phys'
+make[1]: Leaving directory '/global/u1/h/hross/codes/WRF1996'
+------------------------------------------------------------------------------
+NoahMP submodule files populating WRF directories
+------------------------------------------------------------------------------
+if [ 0  -eq 1 ]    ; then make -i -r MODULE_DIRS="-I../dyn_em  -I/global/u1/h/hross/codes/WRF1996/external/esmf_time_f90  -I/global/u1/h/hross/codes/WRF1996/main -I/global/u1/h/hross/codes/WRF1996/external/io_netcdf -I/global/u1/h/hross/codes/WRF1996/external/io_int -I/global/u1/h/hross/codes/WRF1996/frame -I/global/u1/h/hross/codes/WRF1996/share -I/global/u1/h/hross/codes/WRF1996/phys -I/global/u1/h/hross/codes/WRF1996/wrftladj -I/global/u1/h/hross/codes/WRF1996/chem -I/global/u1/h/hross/codes/WRF1996/inc -I/opt/cray/pe/netcdf/4.9.0.3/gnu/9.1/include " chemics ; fi
+if [ 1 -eq 1 ]    ; then make -i -r MODULE_DIRS="-I../dyn_em  -I/global/u1/h/hross/codes/WRF1996/external/esmf_time_f90  -I/global/u1/h/hross/codes/WRF1996/main -I/global/u1/h/hross/codes/WRF1996/external/io_netcdf -I/global/u1/h/hross/codes/WRF1996/external/io_int -I/global/u1/h/hross/codes/WRF1996/frame -I/global/u1/h/hross/codes/WRF1996/share -I/global/u1/h/hross/codes/WRF1996/phys -I/global/u1/h/hross/codes/WRF1996/wrftladj -I/global/u1/h/hross/codes/WRF1996/chem -I/global/u1/h/hross/codes/WRF1996/inc -I/opt/cray/pe/netcdf/4.9.0.3/gnu/9.1/include " em_core ; fi
+make[1]: Entering directory '/global/u1/h/hross/codes/WRF1996'
+--------------------------------------
+if [ 0  -eq 0 ] ; then \
+	CF= ; \
+else \
+	CF="../chem/module_aerosols_sorgam.o ../chem/module_gocart_aerosols.o ../chem/module_mosaic_driver.o ../chem/module_input_tracer.o ../chem/module_aerosols_soa_vbs.o" ; \
+fi
+( cd dyn_em ; make -i -r -j 4 CF="" )
+make[2]: Entering directory '/global/u1/h/hross/codes/WRF1996/dyn_em'
+rm -f module_first_rk_step_part1.o
+rm -f start_em.o
+sed -e "s/^\!.*'.*//" -e "s/^ *\!.*'.*//" module_first_rk_step_part1.F > module_first_rk_step_part1.G
+sed -e "s/^\!.*'.*//" -e "s/^ *\!.*'.*//" start_em.F > start_em.G
+/lib/cpp -P -nostdinc -I/global/u1/h/hross/codes/WRF1996/inc -DEM_CORE=1 -DNMM_CORE=0 -DNMM_MAX_DIM=2600 -DDA_CORE=0 -DWRFPLUS=0 -DIWORDSIZE=4 -DDWORDSIZE=8 -DRWORDSIZE=4 -DLWORDSIZE=4 -DNONSTANDARD_SYSTEM_SUBR  -DWRF_USE_CLM  -DNETCDF -DHDF5 -DLANDREAD_STUB=1 -DUSE_ALLOCATABLES -Dwrfmodel -DGRIB1 -DINTIO -DKEEP_INT_AROUND -DLIMIT_ARGS -DBUILD_RRTMG_FAST=0 -DBUILD_RRTMK=0 -DBUILD_SBM_FAST=1 -DSHOW_ALL_VARS_USED=0 -DCONFIG_BUF_LEN=65536 -DMAX_DOMAINS_F=21 -DMAX_HISTORY=25 -DNMM_NEST=0 -DPNETCDF_QUILT=1 -I. -traditional-cpp   module_first_rk_step_part1.G  > module_first_rk_step_part1.bb
+/lib/cpp -P -nostdinc -I/global/u1/h/hross/codes/WRF1996/inc -DEM_CORE=1 -DNMM_CORE=0 -DNMM_MAX_DIM=2600 -DDA_CORE=0 -DWRFPLUS=0 -DIWORDSIZE=4 -DDWORDSIZE=8 -DRWORDSIZE=4 -DLWORDSIZE=4 -DNONSTANDARD_SYSTEM_SUBR  -DWRF_USE_CLM  -DNETCDF -DHDF5 -DLANDREAD_STUB=1 -DUSE_ALLOCATABLES -Dwrfmodel -DGRIB1 -DINTIO -DKEEP_INT_AROUND -DLIMIT_ARGS -DBUILD_RRTMG_FAST=0 -DBUILD_RRTMK=0 -DBUILD_SBM_FAST=1 -DSHOW_ALL_VARS_USED=0 -DCONFIG_BUF_LEN=65536 -DMAX_DOMAINS_F=21 -DMAX_HISTORY=25 -DNMM_NEST=0 -DPNETCDF_QUILT=1 -I. -traditional-cpp   start_em.G  > start_em.bb
+/global/u1/h/hross/codes/WRF1996/tools/standard.exe module_first_rk_step_part1.bb | /lib/cpp -P -nostdinc -traditional-cpp > module_first_rk_step_part1.f90
+/global/u1/h/hross/codes/WRF1996/tools/standard.exe start_em.bb | /lib/cpp -P -nostdinc -traditional-cpp > start_em.f90
+rm -f module_first_rk_step_part1.G module_first_rk_step_part1.bb
+rm -f start_em.G start_em.bb
+time ftn -o module_first_rk_step_part1.o -c  -w -ffree-form -ffree-line-length-none -fconvert=big-endian -frecord-marker=4 -fallow-argument-mismatch -fallow-invalid-boz -g -O0   -I../dyn_em  -I/global/u1/h/hross/codes/WRF1996/external/esmf_time_f90  -I/global/u1/h/hross/codes/WRF1996/main -I/global/u1/h/hross/codes/WRF1996/external/io_netcdf -I/global/u1/h/hross/codes/WRF1996/external/io_int -I/global/u1/h/hross/codes/WRF1996/frame -I/global/u1/h/hross/codes/WRF1996/share -I/global/u1/h/hross/codes/WRF1996/phys -I/global/u1/h/hross/codes/WRF1996/wrftladj -I/global/u1/h/hross/codes/WRF1996/chem -I/global/u1/h/hross/codes/WRF1996/inc -I/opt/cray/pe/netcdf/4.9.0.3/gnu/9.1/include    module_first_rk_step_part1.f90
+time ftn -o start_em.o -c  -w -ffree-form -ffree-line-length-none -fconvert=big-endian -frecord-marker=4 -fallow-argument-mismatch -fallow-invalid-boz -g -O0   -I../dyn_em  -I/global/u1/h/hross/codes/WRF1996/external/esmf_time_f90  -I/global/u1/h/hross/codes/WRF1996/main -I/global/u1/h/hross/codes/WRF1996/external/io_netcdf -I/global/u1/h/hross/codes/WRF1996/external/io_int -I/global/u1/h/hross/codes/WRF1996/frame -I/global/u1/h/hross/codes/WRF1996/share -I/global/u1/h/hross/codes/WRF1996/phys -I/global/u1/h/hross/codes/WRF1996/wrftladj -I/global/u1/h/hross/codes/WRF1996/chem -I/global/u1/h/hross/codes/WRF1996/inc -I/opt/cray/pe/netcdf/4.9.0.3/gnu/9.1/include    start_em.f90
+1.26user 0.14system 0:01.42elapsed 99%CPU (0avgtext+0avgdata 166208maxresident)k
+0inputs+0outputs (0major+42770minor)pagefaults 0swaps
+rm -f solve_em.o
+sed -e "s/^\!.*'.*//" -e "s/^ *\!.*'.*//" solve_em.F > solve_em.G
+/lib/cpp -P -nostdinc -I/global/u1/h/hross/codes/WRF1996/inc -DEM_CORE=1 -DNMM_CORE=0 -DNMM_MAX_DIM=2600 -DDA_CORE=0 -DWRFPLUS=0 -DIWORDSIZE=4 -DDWORDSIZE=8 -DRWORDSIZE=4 -DLWORDSIZE=4 -DNONSTANDARD_SYSTEM_SUBR  -DWRF_USE_CLM  -DNETCDF -DHDF5 -DLANDREAD_STUB=1 -DUSE_ALLOCATABLES -Dwrfmodel -DGRIB1 -DINTIO -DKEEP_INT_AROUND -DLIMIT_ARGS -DBUILD_RRTMG_FAST=0 -DBUILD_RRTMK=0 -DBUILD_SBM_FAST=1 -DSHOW_ALL_VARS_USED=0 -DCONFIG_BUF_LEN=65536 -DMAX_DOMAINS_F=21 -DMAX_HISTORY=25 -DNMM_NEST=0 -DPNETCDF_QUILT=1 -I. -traditional-cpp   solve_em.G  > solve_em.bb
+/global/u1/h/hross/codes/WRF1996/tools/standard.exe solve_em.bb | /lib/cpp -P -nostdinc -traditional-cpp > solve_em.f90
+rm -f solve_em.G solve_em.bb
+time ftn -o solve_em.o -c  -w -ffree-form -ffree-line-length-none -fconvert=big-endian -frecord-marker=4 -fallow-argument-mismatch -fallow-invalid-boz -g -O0   -I../dyn_em  -I/global/u1/h/hross/codes/WRF1996/external/esmf_time_f90  -I/global/u1/h/hross/codes/WRF1996/main -I/global/u1/h/hross/codes/WRF1996/external/io_netcdf -I/global/u1/h/hross/codes/WRF1996/external/io_int -I/global/u1/h/hross/codes/WRF1996/frame -I/global/u1/h/hross/codes/WRF1996/share -I/global/u1/h/hross/codes/WRF1996/phys -I/global/u1/h/hross/codes/WRF1996/wrftladj -I/global/u1/h/hross/codes/WRF1996/chem -I/global/u1/h/hross/codes/WRF1996/inc -I/opt/cray/pe/netcdf/4.9.0.3/gnu/9.1/include    solve_em.f90
+1.38user 0.10system 0:01.50elapsed 99%CPU (0avgtext+0avgdata 154728maxresident)k
+0inputs+0outputs (0major+40785minor)pagefaults 0swaps
+2.56user 0.13system 0:02.70elapsed 99%CPU (0avgtext+0avgdata 186580maxresident)k
+0inputs+0outputs (0major+48692minor)pagefaults 0swaps
+ar ru ../main/libwrflib.a module_advect_em.o module_ieva_em.o module_diffusion_em.o module_small_step_em.o module_big_step_utilities_em.o module_em.o module_solvedebug_em.o module_bc_em.o module_init_utilities.o module_wps_io_arw.o module_damping_em.o module_polarfft.o module_force_scm.o module_first_rk_step_part1.o module_first_rk_step_part2.o module_avgflx_em.o module_sfs_nba.o module_convtrans_prep.o module_sfs_driver.o module_stoch.o module_after_all_rk_steps.o  init_modules_em.o solve_em.o start_em.o shift_domain_em.o couple_or_uncouple_em.o nest_init_utils.o adapt_timestep_em.o interp_domain_em.o
+make[2]: Leaving directory '/global/u1/h/hross/codes/WRF1996/dyn_em'
+make[1]: Leaving directory '/global/u1/h/hross/codes/WRF1996'
+if [ 0 -eq 1 ]   ; then make -i -r MODULE_DIRS="-I../dyn_em  -I/global/u1/h/hross/codes/WRF1996/external/esmf_time_f90  -I/global/u1/h/hross/codes/WRF1996/main -I/global/u1/h/hross/codes/WRF1996/external/io_netcdf -I/global/u1/h/hross/codes/WRF1996/external/io_int -I/global/u1/h/hross/codes/WRF1996/frame -I/global/u1/h/hross/codes/WRF1996/share -I/global/u1/h/hross/codes/WRF1996/phys -I/global/u1/h/hross/codes/WRF1996/wrftladj -I/global/u1/h/hross/codes/WRF1996/chem -I/global/u1/h/hross/codes/WRF1996/inc -I/opt/cray/pe/netcdf/4.9.0.3/gnu/9.1/include " wrf_hydro ; fi
+( cd main ; make -i -r RLFLAGS="" MODULE_DIRS="-I../dyn_em  -I/global/u1/h/hross/codes/WRF1996/external/esmf_time_f90  -I/global/u1/h/hross/codes/WRF1996/main -I/global/u1/h/hross/codes/WRF1996/external/io_netcdf -I/global/u1/h/hross/codes/WRF1996/external/io_int -I/global/u1/h/hross/codes/WRF1996/frame -I/global/u1/h/hross/codes/WRF1996/share -I/global/u1/h/hross/codes/WRF1996/phys -I/global/u1/h/hross/codes/WRF1996/wrftladj -I/global/u1/h/hross/codes/WRF1996/chem -I/global/u1/h/hross/codes/WRF1996/inc -I/opt/cray/pe/netcdf/4.9.0.3/gnu/9.1/include " SOLVER=em em_wrf )
+make[1]: Entering directory '/global/u1/h/hross/codes/WRF1996/main'
+ranlib  libwrflib.a
+time ftn -o wrf.exe   -w -ffree-form -ffree-line-length-none -fconvert=big-endian -frecord-marker=4 -fallow-argument-mismatch -fallow-invalid-boz -g -O0    wrf.o ../main/module_wrf_top.o libwrflib.a  /global/u1/h/hross/codes/WRF1996/external/fftpack/fftpack5/libfftpack.a /global/u1/h/hross/codes/WRF1996/external/io_grib1/libio_grib1.a /global/u1/h/hross/codes/WRF1996/external/io_grib_share/libio_grib_share.a /global/u1/h/hross/codes/WRF1996/external/io_int/libwrfio_int.a -L/global/u1/h/hross/codes/WRF1996/external/esmf_time_f90 -lesmf_time /global/u1/h/hross/codes/WRF1996/frame/module_internal_header_util.o /global/u1/h/hross/codes/WRF1996/frame/pack_utils.o -L/global/u1/h/hross/codes/WRF1996/external/io_netcdf -lwrfio_nf -L/opt/cray/pe/netcdf/4.9.0.3/gnu/9.1/lib -lnetcdff -lnetcdf      -L/opt/cray/pe/hdf5/1.12.2.3/gnu/9.1/lib -lhdf5hl_fortran -lhdf5_hl -lhdf5_fortran -lhdf5 -lm -lz     
+0.35user 0.23system 0:00.80elapsed 72%CPU (0avgtext+0avgdata 144576maxresident)k
+0inputs+0outputs (0major+46871minor)pagefaults 0swaps
+make[1]: Leaving directory '/global/u1/h/hross/codes/WRF1996/main'
+( cd run ; /bin/rm -f wrf.exe ; ln -s ../main/wrf.exe . )
+if [ 0 -eq 1 ] ; then \
+  ( cd main ; make -i -r RLFLAGS="" MODULE_DIRS="-I../dyn_em  -I/global/u1/h/hross/codes/WRF1996/external/esmf_time_f90  -I/global/u1/h/hross/codes/WRF1996/main -I/global/u1/h/hross/codes/WRF1996/external/io_netcdf -I/global/u1/h/hross/codes/WRF1996/external/io_int -I/global/u1/h/hross/codes/WRF1996/frame -I/global/u1/h/hross/codes/WRF1996/share -I/global/u1/h/hross/codes/WRF1996/phys -I/global/u1/h/hross/codes/WRF1996/wrftladj -I/global/u1/h/hross/codes/WRF1996/chem -I/global/u1/h/hross/codes/WRF1996/inc -I/opt/cray/pe/netcdf/4.9.0.3/gnu/9.1/include " SOLVER=em em_wrf_SST_ESMF ) ; \
+fi
+build started:   Tue 23 Apr 2024 06:50:55 PM PDT
+build completed: Tue 23 Apr 2024 06:51:05 PM PDT
+--------------------------------------
+( cd main ; make -i -r RLFLAGS="" MODULE_DIRS="-I../dyn_em  -I/global/u1/h/hross/codes/WRF1996/external/esmf_time_f90  -I/global/u1/h/hross/codes/WRF1996/main -I/global/u1/h/hross/codes/WRF1996/external/io_netcdf -I/global/u1/h/hross/codes/WRF1996/external/io_int -I/global/u1/h/hross/codes/WRF1996/frame -I/global/u1/h/hross/codes/WRF1996/share -I/global/u1/h/hross/codes/WRF1996/phys -I/global/u1/h/hross/codes/WRF1996/wrftladj -I/global/u1/h/hross/codes/WRF1996/chem -I/global/u1/h/hross/codes/WRF1996/inc -I/opt/cray/pe/netcdf/4.9.0.3/gnu/9.1/include " SOLVER=em IDEAL_CASE=ideal em_ideal )
+make[1]: Entering directory '/global/u1/h/hross/codes/WRF1996/main'
+rm -f ideal_em.o
+sed -e "s/^\!.*'.*//" -e "s/^ *\!.*'.*//" ideal_em.F > ideal_em.G
+/lib/cpp -P -nostdinc -I/global/u1/h/hross/codes/WRF1996/inc -DEM_CORE=1 -DNMM_CORE=0 -DNMM_MAX_DIM=2600 -DDA_CORE=0 -DWRFPLUS=0 -DIWORDSIZE=4 -DDWORDSIZE=8 -DRWORDSIZE=4 -DLWORDSIZE=4 -DNONSTANDARD_SYSTEM_SUBR  -DWRF_USE_CLM  -DNETCDF -DHDF5 -DLANDREAD_STUB=1 -DUSE_ALLOCATABLES -Dwrfmodel -DGRIB1 -DINTIO -DKEEP_INT_AROUND -DLIMIT_ARGS -DBUILD_RRTMG_FAST=0 -DBUILD_RRTMK=0 -DBUILD_SBM_FAST=1 -DSHOW_ALL_VARS_USED=0 -DCONFIG_BUF_LEN=65536 -DMAX_DOMAINS_F=21 -DMAX_HISTORY=25 -DNMM_NEST=0 -DPNETCDF_QUILT=1 -I. -traditional-cpp   ideal_em.G  > ideal_em.bb
+/global/u1/h/hross/codes/WRF1996/tools/standard.exe ideal_em.bb | /lib/cpp -P -nostdinc -traditional-cpp > ideal_em.f90
+rm -f ideal_em.G ideal_em.bb
+time ftn -o ideal_em.o -c  -w -ffree-form -ffree-line-length-none -fconvert=big-endian -frecord-marker=4 -fallow-argument-mismatch -fallow-invalid-boz -g -O0   -I../dyn_em  -I/global/u1/h/hross/codes/WRF1996/external/esmf_time_f90  -I/global/u1/h/hross/codes/WRF1996/main -I/global/u1/h/hross/codes/WRF1996/external/io_netcdf -I/global/u1/h/hross/codes/WRF1996/external/io_int -I/global/u1/h/hross/codes/WRF1996/frame -I/global/u1/h/hross/codes/WRF1996/share -I/global/u1/h/hross/codes/WRF1996/phys -I/global/u1/h/hross/codes/WRF1996/wrftladj -I/global/u1/h/hross/codes/WRF1996/chem -I/global/u1/h/hross/codes/WRF1996/inc -I/opt/cray/pe/netcdf/4.9.0.3/gnu/9.1/include    ideal_em.f90
+0.98user 0.06system 0:01.06elapsed 98%CPU (0avgtext+0avgdata 102672maxresident)k
+0inputs+0outputs (0major+27670minor)pagefaults 0swaps
+ranlib  libwrflib.a
+time ftn -o ideal.exe   -w -ffree-form -ffree-line-length-none -fconvert=big-endian -frecord-marker=4 -fallow-argument-mismatch -fallow-invalid-boz -g -O0    ideal_em.o ../dyn_em/module_initialize_ideal.o libwrflib.a /global/u1/h/hross/codes/WRF1996/external/fftpack/fftpack5/libfftpack.a /global/u1/h/hross/codes/WRF1996/external/io_grib1/libio_grib1.a /global/u1/h/hross/codes/WRF1996/external/io_grib_share/libio_grib_share.a /global/u1/h/hross/codes/WRF1996/external/io_int/libwrfio_int.a -L/global/u1/h/hross/codes/WRF1996/external/esmf_time_f90 -lesmf_time /global/u1/h/hross/codes/WRF1996/frame/module_internal_header_util.o /global/u1/h/hross/codes/WRF1996/frame/pack_utils.o -L/global/u1/h/hross/codes/WRF1996/external/io_netcdf -lwrfio_nf -L/opt/cray/pe/netcdf/4.9.0.3/gnu/9.1/lib -lnetcdff -lnetcdf      -L/opt/cray/pe/hdf5/1.12.2.3/gnu/9.1/lib -lhdf5hl_fortran -lhdf5_hl -lhdf5_fortran -lhdf5 -lm -lz    
+0.34user 0.16system 0:00.65elapsed 78%CPU (0avgtext+0avgdata 123604maxresident)k
+0inputs+0outputs (0major+41327minor)pagefaults 0swaps
+make[1]: Leaving directory '/global/u1/h/hross/codes/WRF1996/main'
+( cd test/em_seabreeze2d_x ; /bin/rm -f wrf.exe ; ln -s ../../main/wrf.exe . )
+( cd test/em_seabreeze2d_x ; /bin/rm -f ideal.exe ; ln -s ../../main/ideal.exe . )
+( cd test/em_seabreeze2d_x ; /bin/rm -f README.namelist ; ln -s ../../run/README.namelist . ; \
+	ln -sf ../../run/LANDUSE.TBL . ; \
+	ln -sf ../../run/RRTM_DATA . )
+( cd run ; /bin/rm -f ideal.exe ; ln -s ../main/ideal.exe . )
+( cd run ; if test -f namelist.input ; then \
+	/bin/cp -f namelist.input namelist.input.backup.`date +%Y-%m-%d_%H_%M_%S` ; fi ; \
+	/bin/rm -f namelist.input ; cp ../test/em_seabreeze2d_x/namelist.input . )
+( cd run ; /bin/rm -f input_sounding ; ln -s ../test/em_seabreeze2d_x/input_sounding . )
+ 
+==========================================================================
+build started:   Tue 23 Apr 2024 06:50:55 PM PDT
+build completed: Tue 23 Apr 2024 06:51:07 PM PDT
+ 
+--->                  Executables successfully built                  <---
+ 
+-rwxrwx--- 1 hross hross 57556616 Apr 23 18:51 main/ideal.exe
+-rwxrwx--- 1 hross hross 71398016 Apr 23 18:51 main/wrf.exe
+ 
+==========================================================================
+ 

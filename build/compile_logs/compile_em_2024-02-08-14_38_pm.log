@@ -1,0 +1,55 @@
+
+Currently Loaded Modules:
+  1) craype-x86-milan
+  2) libfabric/1.15.2.0
+  3) craype-network-ofi
+  4) xpmem/2.6.2-2.5_2.38__gd067c3f.shasta
+  5) perftools-base/23.12.0
+  6) cpe/23.12
+  7) contrib/1.0
+  8) e4s/23.08                             (buildtools)
+  9) cpu/1.0
+ 10) cray-dsmml/0.2.2
+ 11) cray-libsci/23.02.1.1                 (math)
+ 12) PrgEnv-gnu/8.3.3                      (cpe)
+ 13) gcc/11.2.0                            (c)
+ 14) cray-mpich/8.1.25                     (mpi)
+ 15) craype/2.7.20                         (c)
+ 16) cray-hdf5/1.12.2.3                    (io)
+ 17) cray-netcdf/4.9.0.3                   (io)
+ 18) cray-parallel-netcdf/1.12.3.3         (io)
+
+  Where:
+   buildtools:  Software Build Tools
+   c:           Compiler
+   cpe:         Cray Programming Environment Modules
+   io:          Input/output software
+   math:        Mathematical libraries
+   mpi:         MPI Providers
+
+ 
+
+Neither WRF_EM_CORE nor WRF_PLUS_CORE
+        are explicitly specified in shell environment.... 
+copying Registry/Registry.EM to Registry/Registry
+ 
+============================================================================================== 
+ 
+V4.5.2
+git commit 6dba6381e7b690fd109551de406bdfb502c9ac76
+ 
+Compiling: WRF_EM_CORE  
+WRFIO_NCD_LARGE_FILE_SUPPORT=1
+ 
+Linux login28 5.14.21-150400.24.81_12.0.87-cray_shasta_c #1 SMP Thu Jan 11 20:03:21 UTC 2024 (e30c7c1) x86_64 x86_64 x86_64 GNU/Linux
+ 
+GNU Fortran (GCC) 11.2.0 20210728 (Cray Inc.)
+Copyright (C) 2021 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+ 
+============================================================================================== 
+ 
+setting parallel make -j 4
+make: *** No rule to make target 'em_seabreeze_2d_x'.  Stop.
